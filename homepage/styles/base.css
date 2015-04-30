@@ -1,0 +1,15 @@
+h1 {
+	text-align: center;
+}
+
+h1 + img {
+	
+	
+	width: 200px;
+	height: 200px;
+	/*I would recommend doing max-width: and max-height so as not to distort the image :) ;*/
+}
+
+header {
+	text-align: center;
+}

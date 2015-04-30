@@ -1,0 +1,112 @@
+<%inherit file="base.htm" />
+
+<%block name="content">
+  <h2 class="text-success">Description:</h2>
+  <p>
+    One of the color theories in web page design is to use <i>monotone chromatic</i> colors. A monotone color scheme is one hue with different
+    saturations and shades. In other words, a blue monotone color scheme contains various shades of the same blue, from light blue to dark blue.
+    Web sites that solely use the same monotone color scheme can be dull, but used correctly, monotone works really well.
+    The web page designers that work in your company have asked you to create a monotone color scheme calculator. Given a source color, they want
+    to see one shade lighter and one shade darker. HTML colors are given in the form #RRGGBB, where RR is the red part in hexadecimal (00-FF), GG
+    is the green part, and BB is the blue part.
+  </p>
+  <p>
+    Your final project is to create a small web site that calculates darker and lighter versions of colors for developers.
+    I've already started a project for you (this project), and it should run correctly right now.  It already includes 
+    JQuery and Bootstrap.  If it doesn't run correctly, stop here and make it work.  This won't count against your time.
+  </p>
+  <p>
+    Some of the requirements you'll see below could be done with Javascript or with CSS.  However, you need to do exactly what you are asked to do below.  This isn't the time to deviate from the instructions, and it isn't the time to impress me with extra features.  Just go through the instructions and follow them.
+  </p>
+  <p>
+    When you are finished, fill out the spreadsheet (just like all the other rubrics we've done).  The rubric file is in the root directory of this project and is called "FinalExam.xlsx".  I'll go through this rubric as I grade your project.  Fill out the values to the best of your knowledge so I know what to expect.
+  </p>
+  
+  <h2 class="text-success">The Rules:</h2>
+  <ol>
+    <li>You have exactly 4 hours to finish this final.  The time starts when you read the <i>Tasks</i> section below.  You may remember 3 hours from class, but I've decided to allow 4 hours. Don't feel obligated to take the entire time.</li>
+    <li>The 4 hours must be done in a single time block.  No starting, stopping, and restarting. No wishing for more wishes.</li>
+    <li>The exam is closed neighbor.  You cannot get help from anyone on it.</li>
+    <li>The exam is open book and open internet and open project.  Feel free to use your resources to solve the tasks.  Just don't get help from other human beings.</li>
+    <li>The exam is due the last day of finals at midnight.  Be sure it is posed to Learning Suite by then.</li>
+    <li>The rubric spreadsheet is required.  Don't forget to fill it out.  It sets our expectations during grading.</li>
+  </ol>  
+  
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <h2 align="center">If you read further, your 4 hours starts!</h2>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+
+  <h2 class="text-success">The Tasks (start your time now):</h2>
+  <ol>
+    <li>Make the following modifications to the base template:</li>
+    <ul>
+      <li>Add a title (both the <tt>title</tt> tag and an <tt>h1</tt> tag) that prints on all pages of the site.</li>
+      <li>Add an image of your choosing underneath the <tt>h1</tt> tag.  Place this image in the homepage/media/ folder.</li>
+    </ul>
+    <br/>
+    
+    <li>Create base.css in your styles/ folder:</li>
+    <ul>
+      <li>Style your image to be 200 x 200 pixels.</li>
+      <li>Center both the page title (h1 tag) and the image horizontally.</li>
+    </ul>
+    <br/>
+    
+    <li>Create select.py in your views/ folder:</li>
+    <ul>
+      <li>Add a view_function called process_request.  This function should create and clean the color form.  If the form is valid, redirect the user to a the /homepage/color/RRGGBB/ url, where RRGGBB is the hex code the user entered.</li>
+      <li>Add a form class with one text input field.  The user will enter the color here.  Place one clean method in the form class that ensures the user entered a valid color in hex format (RRGGBB).</li>
+    </ul>
+    <br/>
+    
+    <li>Create select.html in your templates/ folder:</li>
+    <ul>
+      <li>Place the form on the page (the variable comes from select.py).</li>
+      <li>Add the form tags and submit button.</li>
+    </ul>
+    <br/>
+    
+    <li>Create color.py in your views/ folder, and add the following:</li>
+    <ul>
+      <li>Add one or more functions to scale colors to darker/lighter shades.  I suggest you use the code
+          found at <a href="http://thadeusb.com/weblog/2010/10/10/python_scale_hex_color">http://thadeusb.com/weblog/2010/10/10/python_scale_hex_color</a>.</li>
+      <li>Add a view_function called process_request:</li>
+        <ul>
+          <li>Get the color code from the urlparams.  You can assume that the code is valid (it was cleaned on the select page).</li>
+          <li>Create a list of 5 items with two lighter shades of the color, the exact color, and two darker shades of the color.  The 
+              colors in the list should get progressively lighter (start with dark and go lighter).</li>
+          <li>For example, the color #df3c3c might go to [ #852424, #b23030, #df3c3c, #ff4848, #ff5454 ].  This example used scale
+              values of .6, .8, 1, 1.2, and 1.4.</li>
+          <li>Send this list variable to the color.html template.</li>
+        </ul>
+    </ul>
+    <br/>
+
+    <li>Create color.html in your templates/ folder:</li>
+    <ul>
+      <li>Using a <tt>for</tt> loop, go through the five colors in the list (that you created in color.py) and print
+          five boxes on the screen.  Set the background color of each box to each color, and print the color
+          hex code inside each box.</li>
+      <li>You are welcome to use any HTML tags for your boxes, from table cells to divs.</li>
+      <li>Set the color and box width/height in the <tt>style</tt> property of each box tag.  Each box should be about 200 x 200 pixels.</li>
+      <li>Provide a bootstrap-styled "back" button that takes the user back to the /homepage/select/ page.</li>
+    </ul>
+    <br/>
+    
+    <li>For the final 10% of the final, add an ajax call to select a random color code for the user.  If you don't get to this part, you'll still get 90% of the points.</li>
+    <ul>
+      <li>Add a bootstrap-styled button to the select.html template.</li>
+      <li>When this button is pressed, trigger an Ajax call to /homepage/select.random_color/</li>
+      <li>The random_color() view function in select.py should create a random hex color and return it to the select page.
+          Use Python's <tt>random</tt> library (it's built into python, so just "import random") to generate a hex code
+          between 000000 and ffffff.
+      </li>
+      <li>When the random_color() method returns successfully, place the random code in the form's input box.</li>
+    </ul>
+    <br/>
+    
+   </ol>
+    
+</%block>
